@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+
+ {% block content %}
+
+<div class="container">
+  <div class="row">
+  
+      <div class="col-sm-2"></div>
+          <div class="col-sm-6 panel-group">
+              <div class="panel panel-primary">
+                <div class="panel-heading">Hit GitHub API</div>
+                  <div class="panel-body">
+
+                      <form method="get">
+                        <div class="form-group">
+                          <label for="username">User Name:</label>
+                          <input type="text" class="form-control" id="username" placeholder="Enter name" name="username" required>
+                        </div>
+                        <div class="form-group">
+                          <label for="min_followes">No. Of Followes:</label>
+                          <input type="number" class="form-control" id="min_followes" placeholder="Enter name" name="min_followes" min="0" >
+                        </div>
+                        <div class="form-group">
+                          <label for="min_repos">No. Of Repos:</label>
+                          <input type="number" class="form-control" id="min_repos" placeholder="Enter name" name="min_repos" min="0" >
+                        </div>
+                        <div class="form-group">
+                          <label for="language">Language:</label>
+                          <input type="text" class="form-control" id="language" placeholder="Enter Language" name="language" >
+                        </div>
+                        <div class="form-group">
+                          <label for="location">Location:</label>
+                          <input type="text" class="form-control" id="location" placeholder="Location" name="location" >
+                        </div>
+              
+                
+              
+                        
+                         <button type="submit" name="submit" class="btn btn-primary">Hit API</button>
+                      </form>
+                        {% if search_result %}
+                          {% if search_result.success %}
+                              <p>
+                                Total Searched Results:
+                                <strong>{{ search_result.size }}</strong>
+                               
+                              </p>
+                              <p>Rate limit: {{ search_result.rate.remaining }}/{{ search_result.rate.limit }}</p>
+                          {% else %}
+                            <p><em>{{ search_result.message }}</em></p>
+                          {% endif %}
+                         
+                          
+                        {% endif %}
+                  </div>
+              </div>
+             
+        </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
